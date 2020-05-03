@@ -29,9 +29,14 @@ serve2 --port 8000
 
 ## Installation as a Laravel command
 
+If you have auto-discover enabled:
+
 ```sh
  composer require carlosvini/serve2
 ```
+
+Otherwise, manually add "CarlosVini\\Serve2\\Serve2ServiceProvider" to config/app.php, in the "providers" array.
+
 
 ### How to run
 
