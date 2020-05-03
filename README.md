@@ -7,7 +7,7 @@ __NEVER USE IT IN PRODUCTION.__
 Not tested on Windows yet.
 
 
-## Installation as standalone command
+## Installation as a standalone command
 
 It's distributed as a PHAR executable, just like composer.
 
