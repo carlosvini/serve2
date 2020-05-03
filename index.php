@@ -100,8 +100,7 @@ $loop = React\EventLoop\Factory::create();
 
 $browser = (new Browser($loop))->withOptions([
     //'timeout' => null,
-    'followRedirects' => true,
-    'maxRedirects' => 30,
+    'followRedirects' => false,
     'obeySuccessCode' => false,
 ]);
 
