@@ -27,7 +27,9 @@ function sig_handler($signo)
             // handle shutdown tasks
             echo 'Closing workers...' . PHP_EOL;
             foreach ($workerPids as $pid) {
-                posix_kill($pid, SIGINT);
+                if (!posix_kill($pid, SIGINT)) {
+                    echo 'Failed to close process ' . $pid . PHP_EOL;
+                }
             }
             exit;
             break;
@@ -38,12 +40,12 @@ function sig_handler($signo)
 // setup signal handlers
 pcntl_signal(SIGINT, 'sig_handler');
 
-$docRoot = is_dir('public') ? 'public' : '';
-
-function startWorker(int $port, string $docRoot)
+function startWorker(int $port, string $router)
 {
-    $cmd = 'php -S localhost:' . $port . ($docRoot ? ' -t ' . $docRoot : '') . ' > /dev/null 2>&1 & echo $!';
-    return exec($cmd);
+    $cmd = 'php -S localhost:' . $port . ' ' . $router;
+    $pid = exec($cmd.' > /dev/null 2>&1 & echo $!');
+    echo 'Worker started - '.$pid.': '.$cmd.PHP_EOL;
+    return $pid;
 }
 
 function getNextWorkerPort()
@@ -54,17 +56,43 @@ function getNextWorkerPort()
     return $next;
 }
 
+if (array_search('-v', $argv)) {
+    echo 'Version 0.1.0'.PHP_EOL;
+    exit;
+}
+if (array_search('--help', $argv)) {
+    echo 'Usage: serve2 router --port 8000'.PHP_EOL;
+    echo 'Both router and --port are optional'.PHP_EOL;
+    exit;
+}
+
 $port = 8000;
 if ($portPos = array_search('--port', $argv)) {
-    $port = $argv[$portPos + 1];
+    $port = $argv[$portPos + 1] ?? null;
     if (!is_numeric($port)) {
         throw new InvalidArgumentException('Port must be numeric');
     }
+    unset($argv[$portPos], $argv[$portPos + 1]);
 }
+
+$router = array_values($argv)[1] ?? null;
+if ($router) {
+    if (!is_file(realpath($router))) {
+        throw new InvalidArgumentException('Router must be a file');
+    }
+    $router = realpath($router);
+} elseif (is_file(realpath('server.php'))) {
+    $router = realpath('server.php');
+}
+if (is_dir(realpath('public'))) {
+    chdir(realpath('public'));
+}
+echo 'Serving from '.getcwd().PHP_EOL;
+
 
 for ($i = 0; $i < 5; $i++) {
     $workerPort = $port + 10000 + $i;
-    $workerPids[] = startWorker($workerPort, $docRoot);
+    $workerPids[] = startWorker($workerPort, $router);
     $workers[$workerPort] = 0;
 }
 
