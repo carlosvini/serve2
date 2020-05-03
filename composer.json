@@ -11,5 +11,17 @@
         "react/event-loop": "^1.1",
         "react/http": "^0.8.6",
         "clue/buzz-react": "^2.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "CarlosVini\\Serve2\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "CarlosVini\\Serve2\\Serve2ServiceProvider"
+            ]
+        }
     }
 }
