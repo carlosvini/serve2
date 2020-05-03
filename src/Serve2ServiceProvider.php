@@ -16,7 +16,7 @@ class Serve2ServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $defer = true;
+    protected $defer = false;
 
     /**
      * Boots application services.
