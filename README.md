@@ -12,7 +12,7 @@ Not tested on Windows yet.
 It's distributed as a PHAR executable, just like composer.
 
 ```sh
-wget https://github.com/carlosvini/serve2/releases/download/v0.1.0/serve2.phar -O /usr/local/bin/serve2
+wget https://github.com/carlosvini/serve2/releases/download/v0.1.2/serve2.phar -O /usr/local/bin/serve2
 chmod +x /usr/local/bin/serve2
 ```
 
