@@ -7,7 +7,7 @@ __NEVER USE IT IN PRODUCTION.__
 Not tested on Windows yet.
 
 
-## Installation
+## Installation as standalone command
 
 It's distributed as a PHAR executable, just like composer.
 
@@ -16,7 +16,7 @@ wget https://github.com/carlosvini/serve2/releases/download/v0.1.0/serve2.phar -
 chmod +x /usr/local/bin/serve2
 ```
 
-## How to run
+### How to run
 
 ```sh
 cd /my-folder-with-php-code
@@ -25,6 +25,18 @@ serve2
 # OR:
 
 serve2 --port 8000
+```
+
+## Installation as a Laravel command
+
+```sh
+ composer require carlosvini/serve2
+```
+
+### How to run
+
+```sh
+php artisan serve2
 ```
 
 ## How it works
