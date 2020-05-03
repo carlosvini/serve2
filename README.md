@@ -16,7 +16,7 @@ wget https://github.com/carlosvini/serve2/releases/download/v0.1.0/serve2.phar -
 chmod +x /usr/local/bin/serve2
 ```
 
-## Run
+## How to run
 
 ```sh
 cd /my-folder-with-php-code
@@ -26,3 +26,8 @@ serve2
 
 serve2 --port 8000
 ```
+
+## How it works
+
+It opens PHP servers and forwards the requests to any of them which is less busy.
+It tries to close the servers on shutdown but it might fail since it's a hack right now. In this case run "pkill php" to kill the unclosed servers.
