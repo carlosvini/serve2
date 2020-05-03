@@ -1,4 +1,12 @@
 {
+    "name": "carlosvini/serve2",
+    "type": "library",
+    "description": "Concurrent alternative to PHP built-in web server.",
+    "keywords": [
+        "server"
+    ],
+    "homepage": "https://github.com/carlosvini/serve2",
+    "license": "MIT",
     "require": {
         "react/event-loop": "^1.1",
         "react/http": "^0.8.6",
