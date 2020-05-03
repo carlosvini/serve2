@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0723efb8c5b41a1d937d9d15b13b2385",
+    "content-hash": "7930283cfdedfd0714caf753263380aa",
     "packages": [
         {
             "name": "clue/buzz-react",
