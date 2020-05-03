@@ -8,8 +8,11 @@ use RingCentral\Psr7\Response;
 use Psr\Http\Message\ServerRequestInterface;
 
 // use function GuzzleHttp\Psr7\stream_for;
-
-require __DIR__ . '/vendor/autoload.php';
+if (file_exists(dirname(getcwd()).'/artisan')) {
+    require dirname(getcwd()) . '/vendor/autoload.php';
+} else {
+    require __DIR__ . '/vendor/autoload.php';
+}
 require __DIR__ . '/Serve2Server.php';
 
 // LimitConcurrentRequestsMiddleware:
