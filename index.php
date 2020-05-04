@@ -78,7 +78,7 @@ if ($portPos = array_search('--port', $argv)) {
     unset($argv[$portPos], $argv[$portPos + 1]);
 }
 
-$router = array_values($argv)[1] ?? null;
+$router = array_values($argv)[1] ?? '';
 if ($router) {
     if (!is_file(realpath($router))) {
         throw new InvalidArgumentException('Router must be a file');
