@@ -41,7 +41,9 @@ function sig_handler($signo)
     }
 }
 // setup signal handlers
-pcntl_signal(SIGINT, 'sig_handler');
+if (extension_loaded('pcntl')) {
+    pcntl_signal(SIGINT, 'sig_handler');
+}
 
 function startWorker(int $port, string $router)
 {
